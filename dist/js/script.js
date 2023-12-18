@@ -1,64 +1,54 @@
-// import { motion } from "framer-motion";
+// Navbar Fixed
+window.onscroll = function () {
+  const header = document.querySelector('header');
+  const fixedNav = header.offsetTop;
+  const toTop = document.querySelector('#to-top');
 
-// const banner = {
-//   hidden: { y: -50, opacity: 0 },
-//   visible: { y: 0, opacity: 1 },
-// };
-
-// export default function Home() {
-//   return (
-//     <motion.div
-//       className="relative"
-//       initial="hidden"
-//       animate="visible"
-//       variants={banner}
-//       transition={{ duration: 1, type: "tween" }}
-//     >
-//       {/* Your banner content goes here */}
-//     </motion.div>
-//   );
-// }
-
-document.getElementById("to-top").addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-});
-// Select Hamburger Icon
-const hamburger = document.getElementById("hamburger");
-
-// Add Click Event Listener
-hamburger.addEventListener("click", () => {
-  // Toggle Hamburger Icon Move
-  hamburger.classList.toggle("hamburger-move");
-});
-
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth",
-    });
-  });
-});
-
-// Back to Top
-const toTop = document.getElementById("to-top");
-
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 200) {
-    toTop.classList.remove("hidden");
+  if (window.pageYOffset > fixedNav) {
+    header.classList.add('navbar-fixed');
+    toTop.classList.remove('hidden');
+    toTop.classList.add('flex');
   } else {
-    toTop.classList.add("hidden");
+    header.classList.remove('navbar-fixed');
+    toTop.classList.remove('flex');
+    toTop.classList.add('hidden');
+  }
+};
+
+// Hamburger
+const hamburger = document.querySelector('#hamburger');
+const navMenu = document.querySelector('#nav-menu');
+
+hamburger.addEventListener('click', function () {
+  hamburger.classList.toggle('hamburger-active');
+  navMenu.classList.toggle('hidden');
+});
+
+// Klik di luar hamburger
+window.addEventListener('click', function (e) {
+  if (e.target != hamburger && e.target != navMenu) {
+    hamburger.classList.remove('hamburger-active');
+    navMenu.classList.add('hidden');
   }
 });
 
-toTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+// Darkmode toggle
+const darkToggle = document.querySelector('#dark-toggle');
+const html = document.querySelector('html');
+
+darkToggle.addEventListener('click', function () {
+  if (darkToggle.checked) {
+    html.classList.add('dark');
+    localStorage.theme = 'dark';
+  } else {
+    html.classList.remove('dark');
+    localStorage.theme = 'light';
+  }
 });
+
+// pindahkan posisi toggle sesuai mode
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  darkToggle.checked = true;
+} else {
+  darkToggle.checked = false;
+}
