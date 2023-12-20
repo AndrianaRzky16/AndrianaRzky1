@@ -7,7 +7,7 @@
     <title>Portfolio Tailwind CSS</title>
     <link href="dist/css/final.css" rel="stylesheet" />
     <script src="src/index.js"></script>
-    <script>
+    <!-- <script>
       if (
         localStorage.theme === "dark" ||
         (!("theme" in localStorage) &&
@@ -17,7 +17,7 @@
       } else {
         document.documentElement.classList.remove("dark");
       }
-    </script>
+    </script> -->
   </head>
   <body>
     <!-- Header Start -->
@@ -147,8 +147,8 @@
           <h2
             class="mb-5 max-w-md text-3xl font-bold text-dark dark:text-white lg:text-4xl"
           >
-            Kenalan Dulu Yuk!
-          </h2>
+          Let's get to know each other first!
+        </h2>
           <p class="max-w-xl text-base font-medium text-secondary lg:text-lg">
             <!-- Hallo Semuany kenalin nama aku Siti Aliyah Putri Saumi Boleh dipangil Aliyah ya, Sekarang saya merupakan siswa dari 
             SMK Yaspi Harun Ar-Rasyid Kejuruan Perbankan Syariah Jurusan Admin Perkantoran. Selama saya sekolah saya telah belajar Ekonomi Islam, Akuntansi, LLKS dan operasional dalam sistem perbankan yang pelaksanaannya berlandaskan hukum Islam (syariah).
@@ -591,4 +591,9 @@
 
     <script src="dist/js/script.js"></script>
   </body>
+  <script>
+    document.body.addEventListener('touchmove', function (e) {
+       e.preventDefault();
+    });
+   </script>
 </html>
